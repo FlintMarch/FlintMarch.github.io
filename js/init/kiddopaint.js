@@ -96,6 +96,7 @@ function init_kiddo_paint() {
         init_tool_bar();
         init_subtool_bars();
         init_color_selector();
+        initPixelEditor();
     }
 }
 
