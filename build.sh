@@ -25,6 +25,7 @@ node_modules/uglify-es/bin/uglifyjs -bo js/app.js \
   js/builders/* \
   js/stamps/* \
   js/sounds/* \
+  js/pixeleditor/* \
 
 echo "" >> js/app.js
 echo "// $(date)" >> js/app.js
