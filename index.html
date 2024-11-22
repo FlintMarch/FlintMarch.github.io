@@ -18,6 +18,7 @@
   <meta name="twitter:image" content="https://kidpix.app/static/jskidpix.png">
   <meta name="msapplication-tap-highlight" content="no" />
   <title>JSKIDPIX v1.0.2021</title>
+  <link rel="stylesheet" href="https://unpkg.com/@sakun/system.css" />
   <link rel="stylesheet" type="text/css" href="css/kidpix.css">
   <link rel="icon" type="image/png" href="img/kidpix.png" />
   <script type="text/javascript" src="js/app.js"></script>
@@ -84,6 +85,66 @@
          <button class="tool alphabet" id="xal25"></button>
          <button class="tool alphabet" id="alnext"><h1>↪</h1></button>
        </div>
+    </div>
+    <div id="pixelEditorModal">
+      <button id="pixelEditorClose" onclick="exitEditor()">X</button>
+      <div id="pixelEditorBody">
+        <div id="stampEditorColorMenu">
+          <button class="currentColor" id="currentColorStampEditor"> </button>
+          <div id="colorselectorStampEditor">
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+            <button class="color"></button>
+          </div>
+          <div>
+            <button onclick="setCurrentTool('pencil')">Pencil</button>
+            <button onclick="setCurrentTool('fill')">Paint Bucket</button>
+          </div>
+        </div>
+        <div id="stampEditorCanvas">
+          <canvas id="pixelEditorReferenceCanvas"></canvas>
+          <canvas id="pixelEditorCanvas"></canvas>
+          <div>
+            <button onclick="rotate90ClockwiseBtn()">Rotate</button>
+          </div>
+          <div>
+            <button onclick="rotateHorizontalFlipBtn()">Flip Horizontal</button>
+          </div>
+          <div>
+            <button onclick="rotateVerticalFlipBtn()">Flip Vertical</button>
+          </div>
+        </div>
+      </div>
+      <button onclick="exportCustomStamp()">Save</button>
     </div>
     <div id="paint">
       <canvas id="kiddopaint" class="pixelated" width="1920" height="1200">:(</canvas>
