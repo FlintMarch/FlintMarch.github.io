@@ -1,4 +1,6 @@
 KiddoPaint.Submenu.sprites = [];
+KiddoPaint.Submenu.customSprites = {};
+KiddoPaint.Submenu.selectedSprite = null;
 
 KiddoPaint.Sprite.sheetPage = 0;
 KiddoPaint.Sprite.sheets = [
@@ -62,6 +64,7 @@ function init_sprites_submenu() {
             spriteRow: row,
             spriteCol: j,
             handler: function(e) {
+                KiddoPaint.Submenu.selectedSprite = individualSprite;
                 var img = new Image();
                 img.src = sheet;
                 img.crossOrigin = 'anonymous';
@@ -75,9 +78,18 @@ function init_sprites_submenu() {
                 };
             }
         }
+        const spriteKey = `${individualSprite.spriteSheet}-${individualSprite.spriteCol}-${individualSprite.spriteRow}`
 
-        KiddoPaint.Submenu.sprites.push(individualSprite);
+        const customSprite = KiddoPaint.Submenu.customSprites[spriteKey];
+
+        if (customSprite != null) {
+            KiddoPaint.Submenu.sprites.push(customSprite);
+        } else {
+            KiddoPaint.Submenu.sprites.push(individualSprite);
+        }
     }
+
+    //KiddoPaint.Submenu.sprites = KiddoPaint.Submenu.sprites.concat(KiddoPaint.Submenu.customSprites)
 
     KiddoPaint.Submenu.sprites.push({
         name: 'Next Page',
@@ -96,6 +108,14 @@ function init_sprites_submenu() {
             (e.type == 'contextmenu') ? KiddoPaint.Sprite.prevSprite(): KiddoPaint.Sprite.nextSprite();
             init_sprites_submenu();
             show_generic_submenu('sprites');
+        }
+    });
+
+    KiddoPaint.Submenu.sprites.push({
+        name: 'Edit Stamp',
+        emoji: 'Edit Stamp',
+        handler: function(e) {
+            showEditor();
         }
     });
 
