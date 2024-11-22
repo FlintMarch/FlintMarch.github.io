@@ -708,3 +708,46 @@ emj {
 .sprite-pos-13-7 {
     object-position: -416px -224px;
 }
+
+#pixelEditorModal {
+    width: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -250px;
+    padding: 20px;
+    background: white;
+    display: None;
+    border: black 1px;
+    border-style: solid;
+}
+
+#pixelEditorBody {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+#pixelEditorReferenceCanvas {
+    width: 25px;
+    height: 25px;
+}
+
+#pixelEditorCanvas {
+    border: black 3px;
+    border-style: solid;
+}
+
+#pixelEditorClose {
+    margin-top: -12px;
+    float: right;
+    background: white;
+    border: none;
+}
+
+#colorselectorStampEditor {
+    width: 51px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
