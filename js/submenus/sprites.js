@@ -113,7 +113,7 @@ function init_sprites_submenu() {
 
     KiddoPaint.Submenu.sprites.push({
         name: 'Edit Stamp',
-        emoji: 'Edit Stamp',
+        imgSrc: 'img/edit-stamp.png',
         handler: function(e) {
             showEditor();
         }

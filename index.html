@@ -87,7 +87,9 @@
        </div>
     </div>
     <div id="pixelEditorModal">
-      <button id="pixelEditorClose" onclick="exitEditor()">X</button>
+      <div class="title-bar">
+        <h1 class="title">Stamp Editor</h1>
+      </div>
       <div id="pixelEditorBody">
         <div id="stampEditorColorMenu">
           <button class="currentColor" id="currentColorStampEditor"> </button>
@@ -133,18 +135,20 @@
         <div id="stampEditorCanvas">
           <canvas id="pixelEditorReferenceCanvas"></canvas>
           <canvas id="pixelEditorCanvas"></canvas>
+        </div>
+        <div id="stampEditorRightSideBar">
           <div>
             <button onclick="rotate90ClockwiseBtn()">Rotate</button>
-          </div>
-          <div>
             <button onclick="rotateHorizontalFlipBtn()">Flip Horizontal</button>
-          </div>
-          <div>
             <button onclick="rotateVerticalFlipBtn()">Flip Vertical</button>
+          </div>
+          <div id="stampEditorBtnGroup">
+            <button class="btn">Restore Original</button>
+            <button class="btn" onclick="exitEditor()">Cancel</button>
+            <button class="btn-default" onclick="exportCustomStamp()">Ok</button>
           </div>
         </div>
       </div>
-      <button onclick="exportCustomStamp()">Save</button>
     </div>
     <div id="paint">
       <canvas id="kiddopaint" class="pixelated" width="1920" height="1200">:(</canvas>

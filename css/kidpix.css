@@ -715,7 +715,7 @@ emj {
 }
 
 #pixelEditorModal {
-    width: 500px;
+    width: 575px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -730,7 +730,7 @@ emj {
 
 #pixelEditorBody {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 6fr 6fr;
 }
 
 #pixelEditorReferenceCanvas {
@@ -755,4 +755,18 @@ emj {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+#stampEditorRightSideBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#stampEditorBtnGroup {
+    width: 100%;
+}
+
+#stampEditorBtnGroup button {
+    width: 100%;
 }
