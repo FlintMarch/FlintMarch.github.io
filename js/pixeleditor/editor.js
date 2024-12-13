@@ -350,6 +350,20 @@ function reverse(row, start, end) {
     return row;
 }
 
+function restoreOriginalStamp() {
+    const baseImage = new Image();
+    const originalSprite = KiddoPaint.Submenu.selectedSprite.custom !== true ? KiddoPaint.Submenu.selectedSprite : KiddoPaint.Submenu.selectedSprite.originalSprite;
+    baseImage.src = originalSprite.spriteSheet
+
+    baseImage.onload = function() {
+        const refImage = scaleImageDataCanvasAPIPixelated(extractSprite(baseImage, 32, originalSprite.spriteCol, originalSprite.spriteRow, 0), 1)
+        editorContext.clearRect(0, 0, height, width)
+        refContext.clearRect(0, 0, refCanvas.height, refCanvas.width)
+        refContext.drawImage(refImage, 0, 0);
+        loadFromImage()
+    }
+}
+
 function initColorSelectorStampEditor() {
     var buttons = document.getElementById('colorselectorStampEditor').children;
     for (var i = 0, len = buttons.length; i < len; i++) {
