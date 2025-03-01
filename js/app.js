@@ -33,8 +33,8 @@ function init_kiddo_paint() {
     var canvas = document.getElementById("kiddopaint");
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
-        canvas.width = canvas.width;
-        canvas.height = canvas.height;
+        canvas.width = window.innerWidth * .9;
+        canvas.height = window.innerHeight * .9;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.imageSmoothingEnabled = false;
         var container = canvas.parentNode;
@@ -556,6 +556,10 @@ function image_upload(ev) {
     ev.returnValue = false;
     return false;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    init_kiddo_paint();
+}, false);
 
 KiddoPaint.Submenu = {};
 
@@ -11008,4 +11012,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Fri Dec 13 13:42:43 CST 2024
+// Sat Mar  1 16:59:52 CST 2025

@@ -23,8 +23,8 @@ function init_kiddo_paint() {
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
         // sets proper offset due to css canvas positioning and kiddopaint buttons
-        canvas.width = canvas.width;
-        canvas.height = canvas.height;
+        canvas.width = window.innerWidth * 0.9;
+        canvas.height = window.innerHeight * 0.9;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.imageSmoothingEnabled = false;
 
@@ -595,3 +595,7 @@ function image_upload(ev) {
     ev.returnValue = false;
     return false;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    init_kiddo_paint();
+}, false);
