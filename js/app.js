@@ -5242,11 +5242,16 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
         tool.lastY = ev._y;
     };
     this.mousemove = function(ev) {
+        let pressure = 1;
+        if (ev.touches && ev.touches[0]["force"]) {
+            print(ev.touches[0]["force"]);
+            pressure = ev.touches[0]["force"];
+        }
         if (tool.isDown) {
             KiddoPaint.Sounds.pencil();
             KiddoPaint.Display.context.beginPath();
             KiddoPaint.Display.context.strokeStyle = tool.texture(KiddoPaint.Current.color);
-            KiddoPaint.Display.context.lineWidth = tool.size * KiddoPaint.Current.scaling;
+            KiddoPaint.Display.context.lineWidth = tool.size * KiddoPaint.Current.scaling * pressure;
             KiddoPaint.Display.context.lineCap = "round";
             KiddoPaint.Display.context.lineJoin = "round";
             KiddoPaint.Display.context.moveTo(tool.lastX, tool.lastY);
@@ -10713,6 +10718,19 @@ const initPixelEditor = () => {
         y = Math.floor(height * y / editorCanvas.clientHeight);
         draw(x, y, editorContext);
     });
+    editorCanvas.addEventListener("touchstart", e => {
+        pixelEditorState.active = true;
+        var rect = editorCanvas.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        x = Math.floor(pixelWidth * x / editorCanvas.clientWidth);
+        y = Math.floor(pixelHeight * y / editorCanvas.clientHeight);
+        if (pixelEditorState.currentTool == "pencil") {
+            draw(x, y, editorContext);
+        } else if (pixelEditorState.currentTool == "fill") {
+            filler(x, y, pixelData[y][x]);
+        }
+    });
     editorCanvas.addEventListener("mousedown", e => {
         pixelEditorState.active = true;
         var rect = editorCanvas.getBoundingClientRect();
@@ -10727,6 +10745,9 @@ const initPixelEditor = () => {
         }
     });
     editorCanvas.addEventListener("mouseup", e => {
+        pixelEditorState.active = false;
+    });
+    editorCanvas.addEventListener("touchend", e => {
         pixelEditorState.active = false;
     });
 };
@@ -11012,4 +11033,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Sat Mar  1 16:59:52 CST 2025
+// Sun Mar  2 15:27:12 CST 2025

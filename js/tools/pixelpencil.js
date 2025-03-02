@@ -16,11 +16,16 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
     };
 
     this.mousemove = function(ev) {
+        let pressure = 1.0
+        if (ev.touches && ev.touches[0]["force"]) {
+            print(ev.touches[0]["force"])
+            pressure = ev.touches[0]["force"]
+        }
         if (tool.isDown) {
             KiddoPaint.Sounds.pencil();
             KiddoPaint.Display.context.beginPath();
             KiddoPaint.Display.context.strokeStyle = tool.texture(KiddoPaint.Current.color);
-            KiddoPaint.Display.context.lineWidth = tool.size * KiddoPaint.Current.scaling;
+            KiddoPaint.Display.context.lineWidth = tool.size * KiddoPaint.Current.scaling * pressure;
             KiddoPaint.Display.context.lineCap = 'round';
             KiddoPaint.Display.context.lineJoin = 'round';
             KiddoPaint.Display.context.moveTo(tool.lastX, tool.lastY);

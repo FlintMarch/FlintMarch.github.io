@@ -54,7 +54,6 @@ const initPixelEditor = () => {
     setcolor(pixelEditorState.color, editorContext);
 
     editorCanvas.addEventListener("mousemove", e => {
-        //console.log(`Mouse moving, editor state: ${pixelEditorState.active}`)
         if (pixelEditorState.active) {
             var rect = editorCanvas.getBoundingClientRect();
             var x = e.clientX - rect.left;
@@ -74,6 +73,20 @@ const initPixelEditor = () => {
         draw(x, y, editorContext);
     })
 
+    editorCanvas.addEventListener("touchstart", e => {
+        pixelEditorState.active = true;
+        var rect = editorCanvas.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        x = Math.floor(pixelWidth * x / editorCanvas.clientWidth);
+        y = Math.floor(pixelHeight * y / editorCanvas.clientHeight);
+        if (pixelEditorState.currentTool == "pencil") {
+            draw(x, y, editorContext)
+        } else if (pixelEditorState.currentTool == "fill") {
+            filler(x, y, pixelData[y][x])
+        }
+    })
+
     editorCanvas.addEventListener("mousedown", e => {
         pixelEditorState.active = true;
         var rect = editorCanvas.getBoundingClientRect();
@@ -88,6 +101,9 @@ const initPixelEditor = () => {
         }
     });
     editorCanvas.addEventListener("mouseup", e => {
+        pixelEditorState.active = false;
+    });
+    editorCanvas.addEventListener("touchend", e => {
         pixelEditorState.active = false;
     });
 };
@@ -154,14 +170,11 @@ const loadFromImage = () => {
         allPixels.push(pixelVal)
     }
 
-    //console.log(allPixels)
 
     const newArray = [...Array(pixelWidth)].map((_) =>
         allPixels.splice(0, pixelHeight)
     );
 
-    //rotate90Clockwise(newArray)
-    //console.log(pixelData)
     pixelData = blankCanvas()
 
     newArray.forEach((col, col_i) => {
