@@ -13,6 +13,9 @@ KiddoPaint.Current = {};
 KiddoPaint.Cache = {};
 KiddoPaint.Alphabet = {};
 KiddoPaint.Sprite = {};
+KiddoPaint.Stylus = {
+    pressure: 0
+}
 
 function init_kiddo_paint() {
     document.addEventListener("contextmenu", function(e) {
@@ -166,11 +169,11 @@ function init_listeners(canvas) {
         console.log(touch)
         if (touch.force) {
             console.log(touch.force)
+            KiddoPaint.Stylus.pressure = touch.force
         }
         var mouseEvent = new MouseEvent("mousemove", {
             clientX: touch.clientX,
             clientY: touch.clientY,
-            pressure: touch.force
         });
         canvas.dispatchEvent(mouseEvent);
         e.preventDefault();

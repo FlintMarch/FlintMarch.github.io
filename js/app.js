@@ -26,6 +26,10 @@ KiddoPaint.Alphabet = {};
 
 KiddoPaint.Sprite = {};
 
+KiddoPaint.Stylus = {
+    pressure: 0
+};
+
 function init_kiddo_paint() {
     document.addEventListener("contextmenu", function(e) {
         e.preventDefault();
@@ -162,11 +166,11 @@ function init_listeners(canvas) {
         console.log(touch);
         if (touch.force) {
             console.log(touch.force);
+            KiddoPaint.Stylus.pressure = touch.force;
         }
         var mouseEvent = new MouseEvent("mousemove", {
             clientX: touch.clientX,
-            clientY: touch.clientY,
-            pressure: touch.force
+            clientY: touch.clientY
         });
         canvas.dispatchEvent(mouseEvent);
         e.preventDefault();
@@ -5248,9 +5252,10 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
     };
     this.mousemove = function(ev) {
         let pressure = 1;
-        console.log(ev);
-        if (ev.pressure) {
-            pressure = ev.pressure;
+        console.log(KiddoPaint.Stylus.pressure);
+        if (KiddoPaint.Stylus.pressure) {
+            pressure = KiddoPaint.Stylus.pressure * 2 + .5;
+            console.log(pressure);
         }
         if (tool.isDown) {
             KiddoPaint.Sounds.pencil();
@@ -11038,4 +11043,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Sun Mar  9 14:33:44 CDT 2025
+// Sun Mar  9 14:46:53 CDT 2025
