@@ -159,6 +159,7 @@ function init_listeners(canvas) {
     }, false);
     canvas.addEventListener("touchmove", function(e) {
         var touch = e.touches[0];
+        console.log(touch);
         if (touch.force) {
             console.log(touch.force);
         }
@@ -5247,6 +5248,7 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
     };
     this.mousemove = function(ev) {
         let pressure = 1;
+        console.log(ev);
         if (ev.pressure) {
             pressure = ev.pressure;
         }
@@ -11036,4 +11038,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Sun Mar  9 14:26:56 CDT 2025
+// Sun Mar  9 14:33:44 CDT 2025

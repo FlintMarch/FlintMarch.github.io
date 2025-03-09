@@ -17,6 +17,7 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
 
     this.mousemove = function(ev) {
         let pressure = 1.0
+        console.log(ev)
         if (ev.pressure) {
             pressure = ev.pressure
         }

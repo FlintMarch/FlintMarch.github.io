@@ -163,6 +163,7 @@ function init_listeners(canvas) {
     }, false);
     canvas.addEventListener("touchmove", function(e) {
         var touch = e.touches[0];
+        console.log(touch)
         if (touch.force) {
             console.log(touch.force)
         }
