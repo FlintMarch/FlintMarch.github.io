@@ -143,7 +143,8 @@ function init_listeners(canvas) {
         var touch = e.touches[0];
         var mouseEvent = new MouseEvent("mousedown", {
             clientX: touch.clientX,
-            clientY: touch.clientY
+            clientY: touch.clientY,
+            pressure: touch.force
         });
         canvas.dispatchEvent(mouseEvent);
         e.preventDefault();
@@ -161,7 +162,8 @@ function init_listeners(canvas) {
         var touch = e.touches[0];
         var mouseEvent = new MouseEvent("mousemove", {
             clientX: touch.clientX,
-            clientY: touch.clientY
+            clientY: touch.clientY,
+            pressure: touch.force
         });
         canvas.dispatchEvent(mouseEvent);
         e.preventDefault();
@@ -5243,9 +5245,9 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
     };
     this.mousemove = function(ev) {
         let pressure = 1;
-        if (ev.touches && ev.touches[0]["force"]) {
-            print(ev.touches[0]["force"]);
-            pressure = ev.touches[0]["force"];
+        if (ev.pressure) {
+            print(ev.pressure);
+            pressure = ev.pressure;
         }
         if (tool.isDown) {
             KiddoPaint.Sounds.pencil();
