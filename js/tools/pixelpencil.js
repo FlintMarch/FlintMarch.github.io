@@ -17,9 +17,8 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
 
     this.mousemove = function(ev) {
         let pressure = 1.0
-        if (ev.touches && ev.touches[0]["force"]) {
-            print(ev.touches[0]["force"])
-            pressure = ev.touches[0]["force"]
+        if (ev.pressure) {
+            pressure = ev.pressure
         }
         if (tool.isDown) {
             KiddoPaint.Sounds.pencil();

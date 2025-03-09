@@ -159,9 +159,13 @@ function init_listeners(canvas) {
     }, false);
     canvas.addEventListener("touchmove", function(e) {
         var touch = e.touches[0];
+        if (touch.force) {
+            console.log(touch.force);
+        }
         var mouseEvent = new MouseEvent("mousemove", {
             clientX: touch.clientX,
-            clientY: touch.clientY
+            clientY: touch.clientY,
+            pressure: touch.force
         });
         canvas.dispatchEvent(mouseEvent);
         e.preventDefault();
@@ -5243,9 +5247,8 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
     };
     this.mousemove = function(ev) {
         let pressure = 1;
-        if (ev.touches && ev.touches[0]["force"]) {
-            print(ev.touches[0]["force"]);
-            pressure = ev.touches[0]["force"];
+        if (ev.pressure) {
+            pressure = ev.pressure;
         }
         if (tool.isDown) {
             KiddoPaint.Sounds.pencil();
@@ -11033,4 +11036,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Sun Mar  9 14:09:48 CDT 2025
+// Sun Mar  9 14:26:56 CDT 2025

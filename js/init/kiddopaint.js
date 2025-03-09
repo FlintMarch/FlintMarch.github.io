@@ -163,9 +163,13 @@ function init_listeners(canvas) {
     }, false);
     canvas.addEventListener("touchmove", function(e) {
         var touch = e.touches[0];
+        if (touch.force) {
+            console.log(touch.force)
+        }
         var mouseEvent = new MouseEvent("mousemove", {
             clientX: touch.clientX,
-            clientY: touch.clientY
+            clientY: touch.clientY,
+            pressure: touch.force
         });
         canvas.dispatchEvent(mouseEvent);
         e.preventDefault();
