@@ -114,6 +114,10 @@ body {
     border-radius: 0;
 }
 
+.toolSelected {
+    border: red solid 4px;
+}
+
 .toolImg {
     width: 36px;
     height: 36px;
@@ -714,7 +718,8 @@ emj {
     object-position: -416px -224px;
 }
 
-#pixelEditorModal {
+#pixelEditorModal,
+#pixConfigModal {
     width: 575px;
     position: absolute;
     left: 50%;

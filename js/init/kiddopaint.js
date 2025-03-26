@@ -16,11 +16,46 @@ KiddoPaint.Sprite = {};
 KiddoPaint.Stylus = {
     pressure: 0
 }
+KiddoPaint.Config = {
+    canvasWidth: 0.9,
+    pencilMin: 0.50,
+    pencilMax: 2.00
+}
+
+function init_config_menu() {
+    const configIds = {
+        "configCanvasWidth": KiddoPaint.Config.canvasWidth,
+        "configPencilMin": KiddoPaint.Config.pencilMin,
+        "configPencilMax": KiddoPaint.Config.pencilMax
+    }
+    for (const [configId, configVal] of Object.entries(configIds)) {
+        const configInput = document.getElementById(configId);
+        configInput.value = configVal
+    }
+}
+
+function addToolSelectedClass(container) {
+    document.getElementById(container).addEventListener("click", function(event) {
+        if (event.target.classList.contains("pixelated")) {
+            // Remove the red border from all buttons
+            document.querySelectorAll(`#${container} .tool`).forEach(button => {
+                button.classList.remove("toolSelected");
+            });
+
+            // Add the red border to the clicked button
+            event.target.parentElement.classList.add("toolSelected");
+            //event.target.classList.add("toolSelected");
+        }
+    });
+}
 
 function init_kiddo_paint() {
     document.addEventListener("contextmenu", function(e) {
         e.preventDefault();
     }, false);
+    addToolSelectedClass("mainbar");
+    addToolSelectedClass("genericsubmenu");
+    init_config_menu();
 
     var canvas = document.getElementById('kiddopaint');
     if (canvas.getContext) {
