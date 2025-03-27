@@ -31,6 +31,19 @@ function init_config_menu() {
     for (const [configId, configVal] of Object.entries(configIds)) {
         const configInput = document.getElementById(configId);
         configInput.value = configVal
+
+        configInput.addEventListener('input', function(event) {
+            const newVal = parseFloat(event.target.value);
+
+            if (newVal !== newVal) {
+                return;
+            };
+
+            let configKey = configId.split("config")[1]
+            configKey = configKey.charAt(0).toLowerCase() + configKey.slice(1);
+
+            KiddoPaint.Config[configKey] = newVal;
+        });
     }
 }
 
@@ -44,7 +57,6 @@ function addToolSelectedClass(container) {
 
             // Add the red border to the clicked button
             event.target.parentElement.classList.add("toolSelected");
-            //event.target.classList.add("toolSelected");
         }
     });
 }

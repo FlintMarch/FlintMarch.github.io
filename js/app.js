@@ -45,6 +45,15 @@ function init_config_menu() {
     for (const [configId, configVal] of Object.entries(configIds)) {
         const configInput = document.getElementById(configId);
         configInput.value = configVal;
+        configInput.addEventListener("input", function(event) {
+            const newVal = parseFloat(event.target.value);
+            if (newVal !== newVal) {
+                return;
+            }
+            let configKey = configId.split("config")[1];
+            configKey = configKey.charAt(0).toLowerCase() + configKey.slice(1);
+            KiddoPaint.Config[configKey] = newVal;
+        });
     }
 }
 
@@ -11075,4 +11084,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Wed Mar 26 15:01:43 CDT 2025
+// Thu Mar 27 13:54:17 CDT 2025
