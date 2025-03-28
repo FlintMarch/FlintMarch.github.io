@@ -22,6 +22,16 @@ KiddoPaint.Config = {
     pencilMax: 2.00
 }
 
+const showConfig = () => {
+    let editorModal = document.getElementById("pixConfigModal");
+    editorModal.style.display = "block";
+}
+
+const exitConfig = () => {
+    let editorModal = document.getElementById("pixConfigModal");
+    editorModal.style.display = "none";
+}
+
 function init_config_menu() {
     const configIds = {
         "configCanvasWidth": KiddoPaint.Config.canvasWidth,
@@ -35,6 +45,7 @@ function init_config_menu() {
         configInput.addEventListener('input', function(event) {
             const newVal = parseFloat(event.target.value);
 
+            // early return if value is not a float (NaN)
             if (newVal !== newVal) {
                 return;
             };

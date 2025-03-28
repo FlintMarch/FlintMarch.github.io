@@ -36,6 +36,16 @@ KiddoPaint.Config = {
     pencilMax: 2
 };
 
+const showConfig = () => {
+    let editorModal = document.getElementById("pixConfigModal");
+    editorModal.style.display = "block";
+};
+
+const exitConfig = () => {
+    let editorModal = document.getElementById("pixConfigModal");
+    editorModal.style.display = "none";
+};
+
 function init_config_menu() {
     const configIds = {
         configCanvasWidth: KiddoPaint.Config.canvasWidth,
@@ -11084,4 +11094,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Thu Mar 27 13:54:17 CDT 2025
+// Fri Mar 28 12:52:00 CDT 2025
