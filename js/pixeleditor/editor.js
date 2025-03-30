@@ -73,8 +73,8 @@ const initPixelEditor = () => {
             var x = e.clientX - rect.left;
             var y = e.clientY - rect.top;
         }
-        x = Math.floor(width * x / editorCanvas.clientWidth);
-        y = Math.floor(height * y / editorCanvas.clientHeight);
+        x = Math.floor(pixelWidth * x / editorCanvas.clientWidth);
+        y = Math.floor(pixelHeight * y / editorCanvas.clientHeight);
         draw(x, y, editorContext);
         e.preventDefault();
     }, {
