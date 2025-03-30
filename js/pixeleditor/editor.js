@@ -77,6 +77,8 @@ const initPixelEditor = () => {
         y = Math.floor(height * y / editorCanvas.clientHeight);
         draw(x, y, editorContext);
         e.preventDefault();
+    }, {
+        passive: false
     })
 
     editorCanvas.addEventListener("touchstart", e => {
@@ -92,7 +94,9 @@ const initPixelEditor = () => {
             filler(x, y, pixelData[y][x])
         }
         e.preventDefault();
-    })
+    }, {
+        passive: false
+    });
 
     editorCanvas.addEventListener("mousedown", e => {
         pixelEditorState.active = true;
@@ -113,6 +117,8 @@ const initPixelEditor = () => {
     editorCanvas.addEventListener("touchend", e => {
         pixelEditorState.active = false;
         e.preventDefault();
+    }, {
+        passive: false
     });
 };
 
