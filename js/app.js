@@ -10771,25 +10771,22 @@ const initPixelEditor = () => {
     });
     editorCanvas.addEventListener("touchmove", e => {
         var rect = editorCanvas.getBoundingClientRect();
-        if (e.touches[0]) {
-            var x = e.touches[0].clientX - rect.left;
-            var y = e.touches[0].clientY - rect.top;
-        } else {
-            var x = e.clientX - rect.left;
-            var y = e.clientY - rect.top;
-        }
-        x = Math.floor(width * x / editorCanvas.clientWidth);
-        y = Math.floor(height * y / editorCanvas.clientHeight);
+        var touch = e.touches[0];
+        var x = touch.clientX - rect.left;
+        var y = touch.clientY - rect.top;
+        x = Math.floor(pixelWidth * x / editorCanvas.clientWidth);
+        y = Math.floor(pixelHeight * y / editorCanvas.clientHeight);
         draw(x, y, editorContext);
         e.preventDefault();
     }, {
         passive: false
     });
     editorCanvas.addEventListener("touchstart", e => {
+        var touch = e.touches[0];
         pixelEditorState.active = true;
         var rect = editorCanvas.getBoundingClientRect();
-        var x = e.clientX - rect.left;
-        var y = e.clientY - rect.top;
+        var x = touch.clientX - rect.left;
+        var y = touch.clientY - rect.top;
         x = Math.floor(pixelWidth * x / editorCanvas.clientWidth);
         y = Math.floor(pixelHeight * y / editorCanvas.clientHeight);
         if (pixelEditorState.currentTool == "pencil") {
@@ -11106,4 +11103,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Sun Mar 30 17:31:50 CDT 2025
+// Sun Mar 30 17:47:43 CDT 2025

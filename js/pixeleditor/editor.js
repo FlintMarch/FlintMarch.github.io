@@ -66,13 +66,10 @@ const initPixelEditor = () => {
 
     editorCanvas.addEventListener("touchmove", e => {
         var rect = editorCanvas.getBoundingClientRect();
-        if (e.touches[0]) {
-            var x = e.touches[0].clientX - rect.left;
-            var y = e.touches[0].clientY - rect.top;
-        } else {
-            var x = e.clientX - rect.left;
-            var y = e.clientY - rect.top;
-        }
+        var touch = e.touches[0];
+        var x = touch.clientX - rect.left;
+        var y = touch.clientY - rect.top;
+
         x = Math.floor(pixelWidth * x / editorCanvas.clientWidth);
         y = Math.floor(pixelHeight * y / editorCanvas.clientHeight);
         draw(x, y, editorContext);
@@ -82,10 +79,11 @@ const initPixelEditor = () => {
     })
 
     editorCanvas.addEventListener("touchstart", e => {
+        var touch = e.touches[0];
         pixelEditorState.active = true;
         var rect = editorCanvas.getBoundingClientRect();
-        var x = e.clientX - rect.left;
-        var y = e.clientY - rect.top;
+        var x = touch.clientX - rect.left;
+        var y = touch.clientY - rect.top;
         x = Math.floor(pixelWidth * x / editorCanvas.clientWidth);
         y = Math.floor(pixelHeight * y / editorCanvas.clientHeight);
         if (pixelEditorState.currentTool == "pencil") {
