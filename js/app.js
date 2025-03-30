@@ -10781,6 +10781,7 @@ const initPixelEditor = () => {
         x = Math.floor(width * x / editorCanvas.clientWidth);
         y = Math.floor(height * y / editorCanvas.clientHeight);
         draw(x, y, editorContext);
+        e.preventDefault();
     });
     editorCanvas.addEventListener("touchstart", e => {
         pixelEditorState.active = true;
@@ -10794,6 +10795,7 @@ const initPixelEditor = () => {
         } else if (pixelEditorState.currentTool == "fill") {
             filler(x, y, pixelData[y][x]);
         }
+        e.preventDefault();
     });
     editorCanvas.addEventListener("mousedown", e => {
         pixelEditorState.active = true;
@@ -10813,6 +10815,7 @@ const initPixelEditor = () => {
     });
     editorCanvas.addEventListener("touchend", e => {
         pixelEditorState.active = false;
+        e.preventDefault();
     });
 };
 
@@ -11097,4 +11100,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Sun Mar 30 16:24:51 CDT 2025
+// Sun Mar 30 17:18:45 CDT 2025
