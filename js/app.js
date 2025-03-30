@@ -10772,10 +10772,12 @@ const initPixelEditor = () => {
     editorCanvas.addEventListener("touchmove", e => {
         var rect = editorCanvas.getBoundingClientRect();
         var touch = e.touches[0];
+        console.log(`touch event: ${touch}`);
         var x = touch.clientX - rect.left;
         var y = touch.clientY - rect.top;
         x = Math.floor(pixelWidth * x / editorCanvas.clientWidth);
         y = Math.floor(pixelHeight * y / editorCanvas.clientHeight);
+        console.log(`drawing: x=${x} y=${y}`);
         draw(x, y, editorContext);
         e.preventDefault();
     }, {
@@ -11103,4 +11105,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Sun Mar 30 17:47:43 CDT 2025
+// Sun Mar 30 18:03:57 CDT 2025
