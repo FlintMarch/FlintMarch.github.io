@@ -66,8 +66,13 @@ const initPixelEditor = () => {
 
     editorCanvas.addEventListener("touchmove", e => {
         var rect = editorCanvas.getBoundingClientRect();
-        var x = e.touches[0].clientX - rect.left;
-        var y = e.touches[0].clientY - rect.top;
+        if (e.touches[0]) {
+            var x = e.touches[0].clientX - rect.left;
+            var y = e.touches[0].clientY - rect.top;
+        } else {
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+        }
         x = Math.floor(width * x / editorCanvas.clientWidth);
         y = Math.floor(height * y / editorCanvas.clientHeight);
         draw(x, y, editorContext);
