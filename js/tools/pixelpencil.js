@@ -17,10 +17,8 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
 
     this.mousemove = function(ev) {
         let pressure = 1.0
-        console.log(KiddoPaint.Stylus.pressure)
         if (KiddoPaint.Stylus.pressure) {
-            pressure = (KiddoPaint.Stylus.pressure * 2) + 0.5;
-            console.log(pressure);
+            pressure = (KiddoPaint.Stylus.pressure * KiddoPaint.Config.pencilMax) + KiddoPaint.Config.pencilMin;
         }
         if (tool.isDown) {
             KiddoPaint.Sounds.pencil();

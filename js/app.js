@@ -5303,10 +5303,8 @@ KiddoPaint.Tools.Toolbox.Pencil = function() {
     };
     this.mousemove = function(ev) {
         let pressure = 1;
-        console.log(KiddoPaint.Stylus.pressure);
         if (KiddoPaint.Stylus.pressure) {
-            pressure = KiddoPaint.Stylus.pressure * 2 + .5;
-            console.log(pressure);
+            pressure = KiddoPaint.Stylus.pressure * KiddoPaint.Config.pencilMax + KiddoPaint.Config.pencilMin;
         }
         if (tool.isDown) {
             KiddoPaint.Sounds.pencil();
@@ -11094,4 +11092,4 @@ function updateToolCursor() {
         break;
     }
 }
-// Fri Mar 28 12:52:00 CDT 2025
+// Sun Mar 30 14:22:26 CDT 2025
